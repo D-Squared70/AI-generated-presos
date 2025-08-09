@@ -227,6 +227,11 @@
             font-size: 1.8em;
         }
         
+        /* Increase label size for the Scene 4 comparison icon grid (Rule: scoped change) */
+        .beyond-grid .label {
+            font-size: 1.8em;
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -316,6 +321,20 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        /* Conclusion flow: make final recap steps larger and more prominent (Rule: compelling conclusion) */
+        .flow-summary .flow-box {
+            min-width: 160px;
+            padding: 40px 50px;
+            box-shadow: 0 12px 30px rgba(160, 231, 229, 0.25);
+            font-size: 2.2em; /* bump to increase emoji size (Rule: readability) */
+        }
+        .flow-summary .label {
+            display: block;
+            font-size: 0.85em; /* larger text inside boxes (Rule: readability) */
+            color: #a0e7e5;
+            margin-top: 8px;
         }
         
         @keyframes slideUp {
@@ -586,7 +605,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="icon-grid" style="margin-top: 60px;">
+                <!-- Scoped class to bump label size on this slide as well -->
+                <div class="icon-grid beyond-grid" style="margin-top: 60px;">
                     <div class="icon-item">
                         <div class="icon">🎭</div>
                         <div class="label">Animations</div>
@@ -674,28 +694,7 @@
             <div class="slide-number">7/11</div>
         </div>
         
-        <!-- Scene 8: The Flow -->
-        <div class="scene">
-            <div class="stars" id="stars8"></div>
-            <div class="firefly" style="top: 45%; right: 30%; animation-delay: 0.5s;"></div>
-            <div class="center-content">
-                <h2>Workflow</h2>
-                <div class="big-emoji">🔄</div>
-                <div class="simple-flow">
-                    <div class="flow-box">📝</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-box">🤖</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-box">✨</div>
-                    <div class="flow-arrow">→</div>
-                    <div class="flow-box">🚀</div>
-                </div>
-                <div class="key-point" style="margin-top: 40px;">
-                    Write → Generate → Polish → Ship
-                </div>
-            </div>
-            <div class="slide-number">8/11</div>
-        </div>
+        
         
         <!-- Scene 9: Step 4 -->
         <div class="scene">
@@ -747,7 +746,7 @@
                     </div>
                 </div>
                 <div class="key-point" style="margin-top: 60px;">
-                    <span class="highlight">yourusername.github.io</span>
+                    <span class="highlight">https://d-squared70.github.io/AI-generated-presos/</span>
                 </div>
             </div>
             <div class="slide-number">10/11</div>
@@ -779,6 +778,27 @@
             </div>
             <div class="slide-number">11/11</div>
         </div>
+
+        <!-- Scene 12: Conclusion - Workflow Recap (moved to end per request) -->
+        <div class="scene">
+            <div class="stars" id="stars12"></div>
+            <div class="firefly" style="top: 45%; right: 30%; animation-delay: 0.5s;"></div>
+            <div class="center-content">
+                <h2>Workflow</h2>
+                <div class="simple-flow flow-summary">
+                    <div class="flow-box">📝<span class="label">Write</span></div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">🤖<span class="label">Generate</span></div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">✨<span class="label">Polish</span></div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">🚀<span class="label">Ship</span></div>
+                </div>
+                <div class="big-emoji">🔁</div>
+                <div class="key-point" style="margin-top: 10px;">Loop and level-up each time</div>
+            </div>
+            <div class="slide-number">12/12</div>
+        </div>
     </div>
     
     <div class="nav-buttons">
@@ -788,11 +808,14 @@
     
     <script>
         let currentScene = 0;
-        const totalScenes = 11;
         const container = document.getElementById('journeyContainer');
         const progressFill = document.getElementById('progressFill');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
+        
+        // Dynamic scene discovery so counts stay correct when slides move (Rule: reliability)
+        const scenes = document.querySelectorAll('.scene');
+        const totalScenes = scenes.length;
         
         // Create stars for each scene
         function createStars(containerId) {
@@ -810,10 +833,15 @@
             }
         }
         
-        // Initialize stars
-        for (let i = 1; i <= 11; i++) {
-            createStars('stars' + i);
-        }
+        // Initialize stars dynamically for all scenes (Rule: avoid assumptions)
+        document.querySelectorAll('.stars').forEach((el) => {
+            if (el && el.id) createStars(el.id);
+        });
+
+        // Set slide numbers dynamically so manual edits aren't needed (Rule: reliability)
+        document.querySelectorAll('.slide-number').forEach((el, idx) => {
+            el.textContent = `${idx + 1}/${totalScenes}`;
+        });
         
         function updateScene() {
             // Update container position
@@ -827,8 +855,10 @@
             prevBtn.disabled = currentScene === 0;
             nextBtn.disabled = currentScene === totalScenes - 1;
             
+            // Debug: log scene changes (Rule: debug logs)
+            console.debug('[slides] updateScene -> index:', currentScene + 1, 'of', totalScenes);
+
             // Trigger animations for current scene
-            const scenes = document.querySelectorAll('.scene');
             const currentSceneElement = scenes[currentScene];
             const animatedElements = currentSceneElement.querySelectorAll('.icon-item, .github-step, .flow-box');
             animatedElements.forEach((el, index) => {
