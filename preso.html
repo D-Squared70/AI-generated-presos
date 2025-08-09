@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The NEW Way To Create Slides in 2025</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Kalam', cursive;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #0a1929 0%, #1a2332 50%, #2d3748 100%);
+            height: 100vh;
+            position: relative;
+            color: #ffffff;
+        }
+        
+        .journey-container {
+            display: flex;
+            height: 100vh;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform;
+        }
+        
+        .scene {
+            min-width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+        
+        /* Stars */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+        
+        .star:nth-child(odd) { animation-delay: 1.5s; }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* Fireflies */
+        .firefly {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffffa0;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ffffa0;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(100px, -50px); }
+            50% { transform: translate(-50px, 100px); }
+            75% { transform: translate(-100px, -30px); }
+        }
+        
+        /* Moon */
+        .moon {
+            position: absolute;
+            top: 10%;
+            right: 15%;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, #fffff0 0%, #fff8dc 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Content styles */
+        h1 {
+            color: #ffffff;
+            font-size: 4em;
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 0 0 20px rgba(255,255,255,0.3);
+            letter-spacing: 2px;
+        }
+        
+        h2 {
+            color: #a0e7e5;
+            font-size: 3em;
+            margin-bottom: 40px;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(160,231,229,0.5);
+        }
+        
+        .key-point {
+            color: #ffffff;
+            font-size: 2em;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+        }
+        
+        .highlight {
+            color: #ffeb3b;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(255,235,59,0.6);
+        }
+        
+        /* Navigation */
+        .nav-buttons {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+        
+        .nav-btn {
+            padding: 12px 24px;
+            background: rgba(160, 231, 229, 0.2);
+            color: #a0e7e5;
+            border: 2px solid #a0e7e5;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 20px;
+            font-family: 'Kalam', cursive;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-btn:hover {
+            background: rgba(160, 231, 229, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(160, 231, 229, 0.4);
+        }
+        
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        
+        /* Progress indicator */
+        .progress-bar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            height: 6px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            z-index: 1000;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #a0e7e5, #ffeb3b);
+            border-radius: 10px;
+            transition: width 0.8s ease;
+            width: 10%;
+        }
+        
+        /* Visual elements */
+        .big-emoji {
+            font-size: 8em;
+            margin: 30px 0;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .percentage-display {
+            font-size: 6em;
+            color: #ffeb3b;
+            font-weight: 700;
+            text-shadow: 0 0 30px rgba(255,235,59,0.6);
+        }
+        
+        /* Grid layout */
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin: 40px 0;
+        }
+        
+        .icon-item {
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+        
+        .icon-item .icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+        }
+        
+        .icon-item .label {
+            font-size: 1.3em;
+            color: #a0e7e5;
+        }
+        
+        /* Increase label size only for the "Enter AI" scene (Rule: micro-steps, scoped change) */
+        .enter-ai-grid .label {
+            font-size: 1.8em;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Comparison */
+        .vs-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            width: 100%;
+            max-width: 900px;
+        }
+        
+        .vs-item {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .vs-item .emoji {
+            font-size: 6em;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .vs-item .label {
+            font-size: 1.8em;
+            margin-top: 20px;
+        }
+        
+        .logo-img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+        }
+        
+        /* Logo pair on opening slide (Rule: comments + micro-steps) */
+        .logo-pair {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        /* Reuse .logo-img but scale up for the intro logos */
+        .logo-pair .logo-img {
+            width: 140px;
+            height: 140px;
+            animation: pulse 2s infinite;
+        }
+        .logo-pair .logo-img:nth-child(2) { animation-delay: 0.5s; }
+        
+        .vs-divider {
+            font-size: 3em;
+            color: #ffeb3b;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100px;
+            line-height: 1;
+        }
+        
+        /* Flow */
+        .simple-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .flow-box {
+            background: rgba(160, 231, 229, 0.1);
+            border: 2px solid #a0e7e5;
+            padding: 30px 40px;
+            border-radius: 20px;
+            font-size: 1.8em;
+            backdrop-filter: blur(10px);
+            animation: slideUp 0.8s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .flow-arrow {
+            font-size: 2.5em;
+            color: #ffeb3b;
+            animation: bounce 2s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+        }
+        
+        /* Step marker */
+        .step-badge {
+            position: absolute;
+            top: 60px;
+            left: 60px;
+            background: rgba(255, 235, 59, 0.2);
+            color: #ffeb3b;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.5em;
+            border: 2px solid #ffeb3b;
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Unicorn quote */
+        .unicorn-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .unicorn-section .image-container {
+            display: inline-block;
+            position: relative;
+            padding: 15px;
+            background: linear-gradient(45deg, #a0e7e5, #ffeb3b, #a0e7e5, #ffeb3b);
+            background-size: 400% 400%;
+            animation: gradientShift 3s ease infinite;
+            border-radius: 20px;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .unicorn-section .unicorn-image {
+            width: 400px;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+        
+        .unicorn-section .quote {
+            font-size: 2.5em;
+            color: #ffeb3b;
+            font-style: italic;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(255,235,59,0.5);
+        }
+        
+        .unicorn-section .visual {
+            font-size: 6em;
+            animation: float 4s infinite ease-in-out;
+        }
+        
+        /* Bullet points */
+        .minimal-list {
+            font-size: 1.8em;
+            line-height: 2;
+        }
+        
+        .minimal-list li {
+            margin: 15px 0;
+            color: #ffffff;
+        }
+        
+        .minimal-list li::before {
+            content: "→ ";
+            color: #a0e7e5;
+            font-weight: 700;
+        }
+        
+        /* GitHub visual */
+        .github-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .github-visual .flow-arrow {
+            height: 60px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .github-step {
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .github-step .number {
+            width: 60px;
+            height: 60px;
+            background: #a0e7e5;
+            color: #0a1929;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+        
+        .github-step .text {
+            font-size: 1.2em;
+            color: #a0e7e5;
+            margin-top: 15px;
+        }
+        
+        /* Tool logos */
+        .tool-comparison {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 60px 0;
+        }
+        
+        .tool-group {
+            text-align: center;
+        }
+        
+        .tool-group .title {
+            font-size: 1.8em;
+            color: #a0e7e5;
+            margin-bottom: 20px;
+        }
+        
+        .tool-group .tools {
+            font-size: 1.6em;
+            line-height: 1.8;
+        }
+        
+        /* Center content wrapper */
+        .center-content {
+            text-align: center;
+            max-width: 1200px;
+        }
+        
+        /* Slide indicator */
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            color: rgba(255,255,255,0.3);
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
+    </div>
+    
+    <div class="journey-container" id="journeyContainer">
+        <!-- Scene 1: Title -->
+        <div class="scene">
+            <div class="stars" id="stars1"></div>
+            <div class="firefly" style="top: 20%; left: 10%;"></div>
+            <div class="firefly" style="top: 60%; right: 20%; animation-delay: 2s;"></div>
+            <div class="moon"></div>
+            <div class="center-content">
+                <h1>The NEW Way To Create Slides</h1>
+                <div class="key-point">in <span class="highlight">2025</span></div>
+                <!-- Replaced star emoji with ChatGPT + Claude logos (Rule: reuse assets, avoid assumptions) -->
+                <div class="logo-pair">
+                    <img src="ChatGPT.png" alt="ChatGPT" class="logo-img">
+                    <img src="Claude.png" alt="Claude" class="logo-img">
+                </div>
+                <div class="key-point">AI Generated Magic</div>
+            </div>
+            <div class="slide-number">1/11</div>
+        </div>
+        
+        <!-- Scene 2: The Problem -->
+        <div class="scene">
+            <div class="stars" id="stars2"></div>
+            <div class="firefly" style="top: 30%; right: 15%;"></div>
+            <div class="center-content">
+                <div class="percentage-display">10-25%</div>
+                <div class="key-point">Time in PowerPoint/Slides</div>
+                <div style="margin: 60px 0;">
+                    <div class="big-emoji">😴</div>
+                </div>
+                <div class="key-point"><span class="highlight">Soulless</span> & <span class="highlight">Locked</span> Templates</div>
+            </div>
+            <div class="slide-number">2/11</div>
+        </div>
+        
+        <!-- Scene 3: Enter AI -->
+        <div class="scene">
+            <div class="stars" id="stars3"></div>
+            <div class="firefly" style="top: 50%; left: 20%; animation-delay: 1s;"></div>
+            <div class="center-content">
+                <h2>Enter AI</h2>
+                <!-- Scoped class to target label size (Rule: reuse + comments) -->
+                <div class="icon-grid enter-ai-grid">
+                    <div class="icon-item">
+                        <div class="icon">💡</div>
+                        <div class="label">Ideate</div>
+                    </div>
+                    <div class="icon-item">
+                        <div class="icon">📊</div>
+                        <div class="label">Structure</div>
+                    </div>
+                    <div class="icon-item">
+                        <div class="icon">🎨</div>
+                        <div class="label">Visualize</div>
+                    </div>
+                </div>
+                <div class="key-point" style="margin-top: 60px;">
+                    Focus on <span class="highlight">Substance</span>
+                </div>
+            </div>
+            <div class="slide-number">3/11</div>
+        </div>
+        
+        <!-- Scene 4: Beyond Traditional -->
+        <div class="scene">
+            <div class="stars" id="stars4"></div>
+            <div class="firefly" style="top: 40%; right: 25%;"></div>
+            <div class="center-content">
+                <div class="tool-comparison">
+                    <div class="tool-group">
+                        <div class="title">Old Way</div>
+                        <div class="tools">
+                            Gamma<br>
+                            StoryDoc<br>
+                            Chronicle
+                        </div>
+                    </div>
+                    <div class="vs-divider">VS</div>
+                    <div class="tool-group">
+                        <div class="title" style="color: #ffeb3b;">New Way</div>
+                        <div class="tools" style="color: #ffeb3b;">
+                            AI + Code<br>
+                            HTML/CSS/JS<br>
+                            Unlimited
+                        </div>
+                    </div>
+                </div>
+                <div class="icon-grid" style="margin-top: 60px;">
+                    <div class="icon-item">
+                        <div class="icon">🎭</div>
+                        <div class="label">Animations</div>
+                    </div>
+                    <div class="icon-item">
+                        <div class="icon">📈</div>
+                        <div class="label">Live Charts</div>
+                    </div>
+                    <div class="icon-item">
+                        <div class="icon">🎮</div>
+                        <div class="label">Interactive</div>
+                    </div>
+                </div>
+            </div>
+            <div class="slide-number">4/11</div>
+        </div>
+        
+        <!-- Scene 5: Step 1 -->
+        <div class="scene">
+            <div class="step-badge">Step 1</div>
+            <div class="stars" id="stars5"></div>
+            <div class="firefly" style="top: 25%; left: 30%;"></div>
+            <div class="center-content">
+                <h2>Write First</h2>
+                <div class="key-point" style="font-size: 2.5em; margin: 40px 0;">
+                    <span class="highlight">Writing = Thinking</span>
+                </div>
+                <div class="unicorn-section">
+                    <div class="image-container">
+                        <img src="Doing Is Being.png" alt="Doing is being" class="unicorn-image">
+                    </div>
+                </div>
+                <div class="key-point">
+                    Add [visual cues] for AI
+                </div>
+            </div>
+            <div class="slide-number">5/11</div>
+        </div>
+        
+        <!-- Scene 6: Step 2 -->
+        <div class="scene">
+            <div class="step-badge">Step 2</div>
+            <div class="stars" id="stars6"></div>
+            <div class="firefly" style="top: 55%; right: 18%; animation-delay: 1.5s;"></div>
+            <div class="center-content">
+                <h2>6 Variations</h2>
+                <div class="vs-container">
+                    <div class="vs-item">
+                        <div class="emoji"><img src="ChatGPT.png" alt="ChatGPT" class="logo-img"></div>
+                        <div class="label">3x GPT 5</div>
+                    </div>
+                    <div class="vs-divider">+</div>
+                    <div class="vs-item">
+                        <div class="emoji"><img src="Claude.png" alt="Claude" class="logo-img"></div>
+                        <div class="label">3x Claude</div>
+                    </div>
+                </div>
+                <div class="minimal-list" style="margin-top: 60px; text-align: left; display: inline-block;">
+                    <li>Brand colors</li>
+                    <li>Constraints</li>
+                    <li>Style (Ghibli, Pixar...)</li>
+                </div>
+            </div>
+            <div class="slide-number">6/11</div>
+        </div>
+        
+        <!-- Scene 7: Step 3 -->
+        <div class="scene">
+            <div class="step-badge">Step 3</div>
+            <div class="stars" id="stars7"></div>
+            <div class="firefly" style="top: 35%; left: 25%;"></div>
+            <div class="center-content">
+                <h2>Iterate</h2>
+                <div class="simple-flow">
+                    <div class="flow-box">Copy</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">New Chat</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">Refine</div>
+                </div>
+                <div class="key-point" style="margin-top: 60px;">
+                    Pro: Try <span class="highlight">Cursor</span>
+                </div>
+            </div>
+            <div class="slide-number">7/11</div>
+        </div>
+        
+        <!-- Scene 8: The Flow -->
+        <div class="scene">
+            <div class="stars" id="stars8"></div>
+            <div class="firefly" style="top: 45%; right: 30%; animation-delay: 0.5s;"></div>
+            <div class="center-content">
+                <h2>Workflow</h2>
+                <div class="big-emoji">🔄</div>
+                <div class="simple-flow">
+                    <div class="flow-box">📝</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">🤖</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">✨</div>
+                    <div class="flow-arrow">→</div>
+                    <div class="flow-box">🚀</div>
+                </div>
+                <div class="key-point" style="margin-top: 40px;">
+                    Write → Generate → Polish → Ship
+                </div>
+            </div>
+            <div class="slide-number">8/11</div>
+        </div>
+        
+        <!-- Scene 9: Step 4 -->
+        <div class="scene">
+            <div class="step-badge">Step 4</div>
+            <div class="stars" id="stars9"></div>
+            <div class="firefly" style="top: 20%; left: 40%;"></div>
+            <div class="center-content">
+                <h2>Add Media</h2>
+                <div class="simple-flow">
+                    <div class="flow-box">📁 Folder</div>
+                    <div class="flow-arrow">+</div>
+                    <div class="flow-box">🖼️ Media</div>
+                    <div class="flow-arrow">=</div>
+                    <div class="flow-box">✨ Magic</div>
+                </div>
+                <div class="key-point" style="margin-top: 60px;">
+                    Use [brackets] as markers
+                </div>
+            </div>
+            <div class="slide-number">9/11</div>
+        </div>
+        
+        <!-- Scene 10: Step 5 - Sharing -->
+        <div class="scene">
+            <div class="step-badge">Step 5</div>
+            <div class="stars" id="stars10"></div>
+            <div class="firefly" style="top: 50%; right: 20%; animation-delay: 2s;"></div>
+            <div class="center-content">
+                <h2>Share Anywhere</h2>
+                <div class="github-visual">
+                    <div class="github-step">
+                        <div class="number">1</div>
+                        <div class="text">GitHub</div>
+                    </div>
+                    <div class="flow-arrow" style="align-self: flex-start; margin-top: 18px;">→</div>
+                    <div class="github-step">
+                        <div class="number">2</div>
+                        <div class="text">Upload</div>
+                    </div>
+                    <div class="flow-arrow" style="align-self: flex-start; margin-top: 18px;">→</div>
+                    <div class="github-step">
+                        <div class="number">3</div>
+                        <div class="text">Pages</div>
+                    </div>
+                    <div class="flow-arrow" style="align-self: flex-start; margin-top: 18px;">→</div>
+                    <div class="github-step">
+                        <div class="number">4</div>
+                        <div class="text">URL</div>
+                    </div>
+                </div>
+                <div class="key-point" style="margin-top: 60px;">
+                    <span class="highlight">yourusername.github.io</span>
+                </div>
+            </div>
+            <div class="slide-number">10/11</div>
+        </div>
+        
+        <!-- Scene 11: Outro -->
+        <div class="scene">
+            <div class="stars" id="stars11"></div>
+            <div class="firefly" style="top: 30%; left: 15%;"></div>
+            <div class="firefly" style="top: 60%; right: 25%; animation-delay: 1s;"></div>
+            <div class="moon"></div>
+            <div class="center-content">
+                <h2>The Future</h2>
+                <div class="vs-container" style="margin: 60px 0;">
+                    <div class="vs-item">
+                        <div class="emoji">⏰</div>
+                        <div class="label">Hours in PPT</div>
+                    </div>
+                    <div class="vs-divider">→</div>
+                    <div class="vs-item">
+                        <div class="emoji">⚡</div>
+                        <div class="label">Minutes with AI</div>
+                    </div>
+                </div>
+                <div class="key-point" style="font-size: 2.5em; margin-top: 60px;">
+                    <span class="highlight">Message</span> + <span class="highlight">Delivery</span>
+                </div>
+                <div class="big-emoji">🌟</div>
+            </div>
+            <div class="slide-number">11/11</div>
+        </div>
+    </div>
+    
+    <div class="nav-buttons">
+        <button class="nav-btn" id="prevBtn" onclick="navigate(-1)">← Previous</button>
+        <button class="nav-btn" id="nextBtn" onclick="navigate(1)">Next →</button>
+    </div>
+    
+    <script>
+        let currentScene = 0;
+        const totalScenes = 11;
+        const container = document.getElementById('journeyContainer');
+        const progressFill = document.getElementById('progressFill');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        
+        // Create stars for each scene
+        function createStars(containerId) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            
+            for (let i = 0; i < 50; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.width = star.style.height = Math.random() * 3 + 'px';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                container.appendChild(star);
+            }
+        }
+        
+        // Initialize stars
+        for (let i = 1; i <= 11; i++) {
+            createStars('stars' + i);
+        }
+        
+        function updateScene() {
+            // Update container position
+            container.style.transform = `translateX(-${currentScene * 100}vw)`;
+            
+            // Update progress bar
+            const progress = ((currentScene + 1) / totalScenes) * 100;
+            progressFill.style.width = `${progress}%`;
+            
+            // Update button states
+            prevBtn.disabled = currentScene === 0;
+            nextBtn.disabled = currentScene === totalScenes - 1;
+            
+            // Trigger animations for current scene
+            const scenes = document.querySelectorAll('.scene');
+            const currentSceneElement = scenes[currentScene];
+            const animatedElements = currentSceneElement.querySelectorAll('.icon-item, .github-step, .flow-box');
+            animatedElements.forEach((el, index) => {
+                el.style.animation = 'none';
+                setTimeout(() => {
+                    el.style.animation = '';
+                    el.style.animationDelay = (index * 0.1) + 's';
+                }, 10);
+            });
+        }
+        
+        function navigate(direction) {
+            const newScene = currentScene + direction;
+            if (newScene >= 0 && newScene < totalScenes) {
+                currentScene = newScene;
+                updateScene();
+            }
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') navigate(-1);
+            if (e.key === 'ArrowRight') navigate(1);
+            if (e.key === ' ') { // Spacebar
+                e.preventDefault();
+                navigate(1);
+            }
+        });
+        
+        // Touch/swipe support for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) navigate(1); // Swipe left
+            if (touchEndX > touchStartX + 50) navigate(-1); // Swipe right
+        }
+        
+        // Initialize
+        updateScene();
+    </script>
+</body>
+</html>
